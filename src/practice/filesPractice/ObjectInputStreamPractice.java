@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class ObjectInputStreamPractice {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args){
         ObjectInputStream objectInputStream=null;
 
         try {
@@ -13,6 +13,7 @@ public class ObjectInputStreamPractice {
             String str = objectInputStream.readUTF();
             System.out.println(str);
         }catch (IOException e){
+            System.out.println("we are here");
             System.out.println(e.getMessage());
         }
     }

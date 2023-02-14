@@ -17,11 +17,9 @@ public class ObjectSerialisablePractice {
         try {
             objectOutputStream = new ObjectOutputStream(new FileOutputStream("navjyot.txt"));
             objectOutputStream.writeObject(c1);
-
             objectOutputStream.writeObject(cars);
-
         }catch (Exception e){
-
+            System.out.println(e.getMessage());
         }
     }
 }

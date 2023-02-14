@@ -1,16 +1,12 @@
 package practice.array;
 
-
 //This question is to compare two string arrays for equality - (this might be lil bit tricky at first)
 //This question is part of the first question that came in our lab4 exam. We can use this exactly as it in matrix logic.
-
 
 //S1 S2 C2 C0 C1 L3
 //S1 S2 C2 C0 C1 L3
 //S2 S1 C0 C2 L3 C1
 //S0 C2 S1 L0 C1 S2 --->answer is row1 and row2 is equal  and row 2 and row 3 is equal
-
-
 
 public class CompareArrayString {
     public static void main(String[] args) {
@@ -55,7 +51,6 @@ public class CompareArrayString {
         }
         return array;
     }
-
 
     static boolean compareArray(String[] array1,String[] array2){
         boolean isEqual = true;
