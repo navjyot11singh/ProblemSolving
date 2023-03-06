@@ -29,9 +29,6 @@ public class CustomStack {
         if(isEmpty()){
             throw new Exception("Cannot pop from empty stack");
         }
-//        int removedItem  = data[ptr];
-//        ptr--;
-//        return  removedItem;
         return  data[ptr--];
     }
 
@@ -43,7 +40,6 @@ public class CustomStack {
 
     }
 
-
     public boolean isFull(){
         return ptr == data.length - 1; // ptr is at last index
     }
@@ -51,4 +47,5 @@ public class CustomStack {
     public boolean isEmpty(){
         return ptr==-1;
     }
+
 }
