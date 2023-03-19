@@ -6,7 +6,6 @@ class QueueNode {
 
     int end = 0;
 
-
     public QueueNode() {
         this(DEFAULT_SIZE);
     }
@@ -14,7 +13,6 @@ class QueueNode {
     public QueueNode(int size) {
         this.data = new CustomTrees.Node[size];
     }
-
 
     public boolean isFull() {
         return end == data.length; // ptr is at last index
