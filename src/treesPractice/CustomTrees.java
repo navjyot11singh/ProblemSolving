@@ -1,9 +1,5 @@
 package treesPractice;
 
-
-import Queues.CustomQueue;
-import Queues.QueueMain;
-
 public class CustomTrees {
 
     Node root;
@@ -23,11 +19,9 @@ public class CustomTrees {
         }
     }
 
-
     public void insert(int data){
         this.root = insertData(this.root,data);
     }
-
 
     public boolean search(Node root,int data){
         if(root==null) return false;
@@ -35,7 +29,6 @@ public class CustomTrees {
         else if(data < root.value) return search(root.left,data);
         else return search(root.right,data);
     }
-
 
     public Node insertData(Node child,int data){
         if(child==null){
@@ -79,12 +72,12 @@ public class CustomTrees {
        if(root==null){
            return -1;
        }
+
        int leftHeight = findHeight(root.left);
        int rightHeight = findHeight(root.right);
 
        return Math.max(leftHeight,rightHeight)+1;
     }
-
 
     public void levelOrder(Node root){
         if(root==null){
@@ -100,8 +93,6 @@ public class CustomTrees {
             if(current.right!=null) customQueue.insert(current.right);
             customQueue.remove();
         }
-
-
     }
 
     public void preorder(Node root){
@@ -124,37 +115,77 @@ public class CustomTrees {
         inOrder(root.right);
     }
 
-
-    public boolean isSubTreeLesser(){
-
-    }
-
-    public boolean isSubTreeGreater(){
-
-    }
-
-    public boolean isBinarySearchTree(){
-        if(root==null){
+    public boolean isSubTreeLesser(Node root, int value){
+        if(root==null) return true;
+        if(root.value<=value && isSubTreeLesser(root.left,value) && isSubTreeLesser(root.right,value)){
             return true;
         }
-        if(isSubTreeLesser() && isSubTreeGreater() && isBinarySearchTree() && isBinarySearchTree()) {
+            return false;
+    }
+
+    public boolean isSubTreeGreater(Node root, int value){
+        if(root==null) return true;
+        if(root.value>value && isSubTreeGreater(root.left,value) && isSubTreeGreater(root.right,value)){
             return true;
         }
-
         return false;
     }
 
+    public boolean isBinarySearchTree(Node root){
+        if(root==null){
+            return true;
+        }
+        if(isSubTreeLesser(root.left, root.value) && isSubTreeGreater(root.right ,root.value) && isBinarySearchTree(root.left) && isBinarySearchTree(root.right)) {
+            return true;
+        }
+        return false;
+    }
 
+    public Node delete(Node root, int value){
+        if(root==null){
+            return root;
+        }else if(value<root.value) root.left=delete(root.left,value);
+        else if(value>root.value) root.right=delete(root.right,value);
+        else {
+            if(root.left==null && root.right==null){
+                root=null;
+                return root;
+            }else if(root.left==null){
+                Node temp=root;
+                root=root.right;
+                temp=null;
+                return root;
+            }else if(root.right==null){
+                Node temp =root;
+                root=root.left;
+                temp=null;
+                return root;
+            }else{
+                Node temp = findMinNode(root.right);
+                root.value = temp.value;
+                root.right = delete(root.right, temp.value);
+            }
+        }
+        return root;
+    }
+
+    public Node findMinNode(Node node){
+        Node current = node;
+
+        while (current.right!=null){
+            current=current.left;
+        }
+        return current;
+    }
 
     public static void main(String[] args) {
         CustomTrees customTrees = new CustomTrees();
         customTrees.insert(200);
         customTrees.insert(100);
-        customTrees.insert(80);
-        customTrees.insert(50);
-        customTrees.insert(20);
-        customTrees.insert(10);
-
+        customTrees.insert(400);
+//        customTrees.insert(50);
+//        customTrees.insert(20);
+//        customTrees.insert(10);
 
         System.out.println("height of tree: "+customTrees.findHeight(customTrees.root));
         System.out.println("min: "+customTrees.findMin());
@@ -164,7 +195,6 @@ public class CustomTrees {
         System.out.println();
         System.out.println("Level order");
         customTrees.levelOrder(customTrees.root);
-
 
         System.out.println();
         System.out.println();
@@ -181,7 +211,12 @@ public class CustomTrees {
         System.out.println("Post order");
         customTrees.postOrder(customTrees.root);
 
+        customTrees.delete(customTrees.root, 100);
+        customTrees.postOrder(customTrees.root);
+
         System.out.println(customTrees.search(customTrees.root, 80));
+
+        System.out.println(customTrees.isBinarySearchTree(customTrees.root));
 
 
     }
