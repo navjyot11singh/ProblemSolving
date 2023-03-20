@@ -7,6 +7,7 @@ package treesPractice;
 public class roadTaxProb {
     public boolean pathSum(CustomTrees.Node root,int sum){
         if(root==null) return false;
+
         sum=sum- root.value;
 
         if(root.left == null && root.right==null ){
