@@ -144,23 +144,32 @@ public class CustomTrees {
     public Node delete(Node root, int value){
         if(root==null){
             return root;
-        }else if(value<root.value) root.left=delete(root.left,value);
-        else if(value>root.value) root.right=delete(root.right,value);
-        else {
-            if(root.left==null && root.right==null){
+        }
+        else if(value<root.value)
+            root.left=delete(root.left,value);
+        else if(value>root.value)
+            root.right=delete(root.right,value);
+        else
+        {
+            if(root.left==null && root.right==null) // leaf node check
+            {
                 root=null;
                 return root;
-            }else if(root.left==null){
+            }
+            else if(root.left==null){            //
                 Node temp=root;
                 root=root.right;
                 temp=null;
                 return root;
-            }else if(root.right==null){
+            }
+            else if(root.right==null)
+            {
                 Node temp =root;
                 root=root.left;
                 temp=null;
                 return root;
-            }else{
+            }
+            else{
                 Node temp = findMinNode(root.right);
                 root.value = temp.value;
                 root.right = delete(root.right, temp.value);
@@ -183,9 +192,6 @@ public class CustomTrees {
         customTrees.insert(200);
         customTrees.insert(100);
         customTrees.insert(400);
-//        customTrees.insert(50);
-//        customTrees.insert(20);
-//        customTrees.insert(10);
 
         System.out.println("height of tree: "+customTrees.findHeight(customTrees.root));
         System.out.println("min: "+customTrees.findMin());
@@ -218,6 +224,8 @@ public class CustomTrees {
 
         System.out.println(customTrees.isBinarySearchTree(customTrees.root));
 
+        System.out.println("Deleted node: " + customTrees.delete(customTrees.root,100).value);
+        customTrees.postOrder(customTrees.root);
 
     }
 }
