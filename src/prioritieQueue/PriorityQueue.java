@@ -61,6 +61,7 @@ public class PriorityQueue {
         priorityQueue.insert(53);
         priorityQueue.insert(2);
         priorityQueue.insert(88);
+        priorityQueue.insert(95);
         priorityQueue.display();
 
         System.out.println(priorityQueue.remove());
